@@ -38,5 +38,4 @@ public class Waiter extends UserEntity {
     @Column(nullable = false)
     private Boolean isBusy;
 
-
 }
