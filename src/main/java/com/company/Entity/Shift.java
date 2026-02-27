@@ -1,7 +1,7 @@
 package com.company.Entity;
 
+import com.company.Enums.ShiftStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -20,17 +20,22 @@ public class Shift  {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
-    private Boolean isActive;
+    @JoinColumn(name = "shift_order_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ShiftOrder shiftOrder;
+
+    @JoinColumn(name="waiter_id",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Waiter waiter;
 
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    @Enumerated(EnumType.STRING)
+    private ShiftStatus status;
 
     @Column(nullable = false)
-    private LocalDateTime updateAt;
+    private LocalDateTime requestedAt;
 
     @Column(nullable = false)
-    private HotelOrder hotelOrder;
-
+    private LocalDateTime respondedAt;
 
 }

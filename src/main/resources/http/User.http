@@ -1,0 +1,27 @@
+POST http://localhost:8081/user/register
+Content-Type: application/json
+
+{
+  "name": "Kobiljon",
+  "surname": "Odilov",
+  "phoneNumber": "+998901234567",
+  "password": "Qobil@12",
+  "email": "qobilodilov12@gmail.com",
+  "nin": "123TJ12",
+  "bankDetails": {
+    "sortCode": "041019",
+    "bankName": "Revolut",
+    "accountNumber": "3214342"
+  }
+}
+
+###
+
+PUT http://localhost:8081/user/change_password
+Content-Type: application/json
+
+{
+  "userId": "886d28af-f774-4d89-a12a-67679b4e6acb",
+  "newPassword": "odil@12",
+  "oldPassword": "Qobil@12"
+}

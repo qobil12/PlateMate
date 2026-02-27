@@ -12,30 +12,18 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Waiter extends UserEntity {
-
-    @JoinColumn(nullable = false)
-    @OneToOne(fetch = FetchType.LAZY)
-    private BankDetails bankDetails;
 
     @Column(nullable = false)
     private String photo;
-
-    @Column(nullable = false)
-    private String NIN;
-
-    @Column(nullable = false)
-    private Long workedHours;
-
-    @JoinColumn(nullable = false)
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Shift> workedShifts;
 
     @Column(nullable = false)
     private Boolean isOnHoliday;
 
     @Column(nullable = false)
     private Boolean isBusy;
+
+    @OneToMany(mappedBy = "waiter", fetch = FetchType.LAZY)
+    private List<Shift> shifts;
 
 }
