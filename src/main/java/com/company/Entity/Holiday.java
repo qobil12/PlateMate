@@ -6,31 +6,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class Shift  {
-
+@AllArgsConstructor
+@NoArgsConstructor
+public class Holiday {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    private Boolean isActive;
+    private String reason;
 
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    private Boolean isApproved;
+
+    @JoinColumn(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Waiter waiter;
 
     @Column(nullable = false)
-    private LocalDateTime updateAt;
-
-    @Column(nullable = false)
-    private HotelOrder hotelOrder;
-
-
+    private Integer durationInDays;
 }

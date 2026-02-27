@@ -14,23 +14,32 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Shift  {
-
+public class HotelOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    private Boolean isActive;
+    private Integer numberOfStuff;
 
     @Column(nullable = false)
-    private LocalDateTime createAt;
+    private Double payRate;
 
     @Column(nullable = false)
-    private LocalDateTime updateAt;
+    private LocalDateTime startTime;
 
     @Column(nullable = false)
-    private HotelOrder hotelOrder;
+    private LocalDateTime endTime;
 
+    @Column(nullable = false)
+    private LocalDateTime duration;
 
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+
+    @Column(nullable = false)
+    private String description;
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -31,4 +33,9 @@ public class Waiter extends UserEntity {
     private List<Shift> workedShifts;
 
     @Column(nullable = false)
+    private Boolean isOnHoliday;
+
+    @Column(nullable = false)
+    private Boolean isBusy;
+
 }
