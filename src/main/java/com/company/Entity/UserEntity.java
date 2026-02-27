@@ -7,10 +7,11 @@ import lombok.*;
 import java.util.UUID;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Generated
 @Setter
+@Getter
+@Inheritance(strategy = InheritanceType.JOINED)
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -23,7 +24,7 @@ public class UserEntity {
     private String surname;
 
     @Column(nullable = false)
-    private String emaill;
+    private String email;
 
     @Column(nullable = false)
     private String phoneNumber;
@@ -32,6 +33,12 @@ public class UserEntity {
     private String password;
 
     @Column(nullable = false)
-    private Role role;
+    private Role role= Role.WAITER;
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "user",orphanRemoval = true)
+    private BankDetails bankDetails;
+
+    @Column(nullable = false)
+    private String nin;
 
 }

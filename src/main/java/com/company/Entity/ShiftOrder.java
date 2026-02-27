@@ -7,20 +7,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class HotelOrder {
+public class ShiftOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    private Integer numberOfStuff;
+    private Integer numberOfStaff;
 
     @Column(nullable = false)
     private Double payRate;
@@ -42,4 +42,7 @@ public class HotelOrder {
 
     @Column(nullable = false)
     private String description;
+
+    @OneToMany(mappedBy = "shiftOrder")
+    private List<Shift> shifts;
 }
