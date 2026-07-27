@@ -1,7 +1,7 @@
 package com.company.Mapper;
 
-import com.company.DTO.UserCreateDTO;
-import com.company.DTO.UserResponseDTO;
+import com.company.DTO.user.UserCreateDTO;
+import com.company.DTO.user.UserResponseDTO;
 import com.company.Entity.UserEntity;
 import org.mapstruct.Mapper;
 

@@ -1,6 +1,10 @@
 package com.company.Service;
 
 import com.company.DTO.*;
+import com.company.DTO.user.UserCreateDTO;
+import com.company.DTO.user.UserInfoChangeDTO;
+import com.company.DTO.user.UserResponseDTO;
+import com.company.DTO.user.UserRoleChangeDTO;
 import com.company.Entity.UserEntity;
 import com.company.Exceptions.ItemAlreadyExistsException;
 import com.company.Exceptions.ItemMismatchException;
@@ -63,6 +67,5 @@ public class UserService {
         user.setRole(dto.getNewRole());
         return userMapper.toUserResponseDTO(userRepository.save(user));
     }
-
 
 }

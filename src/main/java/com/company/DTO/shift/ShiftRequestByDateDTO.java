@@ -1,6 +1,5 @@
-package com.company.DTO;
+package com.company.DTO.shift;
 
-import com.company.Enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,11 +7,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class UserRoleChangeDTO {
-    private UUID userId;
-    private Role newRole;
+@Data
+public class ShiftRequestByDateDTO {
+    private UUID waterId;
+    private String date;
 }

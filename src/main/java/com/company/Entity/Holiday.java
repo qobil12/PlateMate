@@ -1,7 +1,7 @@
 package com.company.Entity;
 
+import com.company.Enums.HolidayStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +22,7 @@ public class Holiday {
     private String reason;
 
     @Column(nullable = false)
-    private Boolean isApproved;
+    private HolidayStatus holidayStatus= HolidayStatus.PENDING;
 
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +34,4 @@ public class Holiday {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
-    private Boolean isActive;
 }

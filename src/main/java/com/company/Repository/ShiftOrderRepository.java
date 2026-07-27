@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface OrderRepository extends JpaRepository<ShiftOrder, UUID> {
+public interface ShiftOrderRepository extends JpaRepository<ShiftOrder, UUID> {
 }

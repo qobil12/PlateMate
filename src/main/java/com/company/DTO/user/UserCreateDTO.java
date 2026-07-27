@@ -1,7 +1,6 @@
-package com.company.DTO;
+package com.company.DTO.user;
 
-import com.company.Entity.BankDetails;
-import com.company.Enums.Role;
+import com.company.DTO.BankDetailsDTO;
 import lombok.*;
 
 @Data
