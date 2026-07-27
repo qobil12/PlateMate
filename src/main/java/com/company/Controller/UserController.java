@@ -1,8 +1,8 @@
 package com.company.Controller;
 
 import com.company.DTO.PasswordChangeDTO;
-import com.company.DTO.UserCreateDTO;
-import com.company.DTO.UserResponseDTO;
+import com.company.DTO.user.UserCreateDTO;
+import com.company.DTO.user.UserResponseDTO;
 import com.company.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

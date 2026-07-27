@@ -1,11 +1,11 @@
 package com.company.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -27,6 +27,9 @@ public class ShiftOrder {
 
     @Column(nullable = false)
     private LocalDateTime startTime;
+
+    @Column(nullable = false)
+    private LocalDate date;
 
     @Column(nullable = false)
     private LocalDateTime endTime;
