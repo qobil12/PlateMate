@@ -25,6 +25,7 @@ Built on **Spring Boot 3** and **PostgreSQL**, PlateMate favours a layered archi
 - 👤 **User Management** — register staff, update personal info, change passwords, and reassign roles.
 - 🧑‍🍳 **Waiter Profiles** — extended user type with photo, availability (`isBusy` / `isOnHoliday`) and shift history.
 - 🗓️ **Shift Tracking** — query a waiter's shifts, filter by approval status, or narrow down by date.
+- 🧾 **Shift & Shift Order Management** — full **BREAD** (Browse, Read, Edit, Add, Delete) service methods for shifts and staffing orders.
 - 🌴 **Holiday Workflow** — create, approve, decline and delete holiday requests with a status lifecycle.
 - 💳 **Bank Details** — securely associate payroll banking info with each user (one-to-one).
 - 🔐 **Role-Based Model** — built-in roles for `WAITER`, `MANAGER` and `ADMIN`.
@@ -147,23 +148,38 @@ POST http://localhost:8081/user/register
 Content-Type: application/json
 
 {
-  "name": "Kobiljon",
-  "surname": "Odilov",
-  "phoneNumber": "+998901234567",
-  "password": "Qobil@12",
-  "email": "qobilodilov12@gmail.com",
-  "nin": "123TJ12",
+  "name": "Jane",
+  "surname": "Doe",
+  "phoneNumber": "+10000000000",
+  "password": "ChangeMe@123",
+  "email": "jane.doe@example.com",
+  "nin": "AB123456C",
   "bankDetails": {
-    "sortCode": "041019",
-    "bankName": "Revolut",
-    "accountNumber": "3214342"
+    "sortCode": "000000",
+    "bankName": "Example Bank",
+    "accountNumber": "00000000"
   }
 }
 ```
 
 > 📎 Ready-to-run request samples live in [`src/main/resources/http/User.http`](src/main/resources/http/User.http).
 
-> 🚧 **Note:** Waiter, Shift and Holiday services are implemented at the service layer and are being progressively exposed through controllers.
+> 🚧 **Note:** Waiter, Shift, Shift Order and Holiday services are implemented at the service layer and are being progressively exposed through controllers.
+
+### 🧾 Shift & Shift Order (service layer — BREAD)
+
+`ShiftService` and `ShiftOrderService` expose the full **BREAD** set. Each write returns a response DTO (`ShiftResponseDTO` / `ShiftOrderResponseDTO`); reads that miss raise `ItemNotFoundException`.
+
+| Operation  | `ShiftOrderService`               | `ShiftService`               |
+|------------|-----------------------------------|------------------------------|
+| **B**rowse | `getAllShiftOrders()`             | `getAllShifts()`             |
+| **R**ead   | `getShiftOrderById(id)`           | `getShiftById(id)`           |
+| **E**dit   | `updateShiftOrder(id, dto)`       | `updateShift(id, dto)`       |
+| **A**dd    | `createShiftOrder(dto)`           | `createShift(dto)`           |
+| **D**elete | `deleteShiftOrder(id)`            | `deleteShift(id)`            |
+
+- **Add / Edit** on a shift order stamp `createdAt` / `updatedAt` automatically and reject a `startTime` after `endTime`.
+- A shift is created against an existing **shift order** and **waiter** (both resolved by id); a new shift defaults to `PENDING` status.
 
 ---
 
